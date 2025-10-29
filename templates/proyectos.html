@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Proyectos</title>
+</head>
+
+<body>
+    <div id="content">
+        <h1>Proyectos</h1>
+
+
+        <div class="proyectos">
+            {% for p in proyectos %}
+            <div class="proyecto">
+                <h3>{{ p.titulo }}</h3>
+                <p>{{ p.descripcion }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <br>
+
+        <a href="{% url 'index'%}">Volver al inicio</a>
+    </div>
+</body>
+
+</html>
