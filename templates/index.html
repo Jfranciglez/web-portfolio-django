@@ -1,8 +1,147 @@
-{% extends "base.html" %}
 
 {% load static %}
 
-{% block content %}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mi Portafolio</title>
+  <link rel="stylesheet" href="{% static '/static/css/style.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@2.16.0/devicon.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            beige: '#f5f3ef',
+            negro: '#1a1a1a',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const faders = document.querySelectorAll(".fade-in");
 
-<img src="{% static '' %}">
-{% endblock %}
+  const appearOptions = {
+    threshold: 0.2,
+    rootMargin: "0px 0px -50px 0px"
+  };
+
+  const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("show");
+      observer.unobserve(entry.target);
+    });
+  }, appearOptions);
+
+  faders.forEach(fader => appearOnScroll.observe(fader));
+});
+</script>
+
+
+</head>
+
+<body class="bg-beige text-negro font-sans scroll-smooth">
+
+  <!-- HEADER -->
+  <header class="fixed top-0 left-0 w-full bg-beige/90 backdrop-blur-sm shadow-sm z-50">
+    <nav class="max-w-5xl mx-auto flex justify-between items-center py-4 px-6">
+      <h1 class="font-bold text-xl">Mi Portafolio</h1>
+      <ul class="flex gap-6">
+        <li><a href="#inicio" class="hover:text-gray-600">Inicio</a></li>
+        <li><a href="#sobre-mi" class="hover:text-gray-600">Sobre mí</a></li>
+        <li><a href="#proyectos" class="hover:text-gray-600">Proyectos</a></li>
+        <li><a href="#habilidades" class="hover:text-gray-600">Habilidades</a></li>
+        <li><a href="#contacto" class="hover:text-gray-600">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- SECCIÓN INICIO -->
+  <section id="inicio" class="h-screen flex flex-col justify-center items-center text-center px-6">
+    <img src="{% static 'img/foto.jpg' %}" alt="Foto de Jennifer" class="w-60 h-60 rounded-full shadow-md mb-6 object-cover">
+    <h2 class="text-3xl font-semibold mb-2">¡Hola! Soy Jennifer</h2>
+    <p class="text-gray-700 mb-6">Desarrolladora web en formación.</p>
+    <a href="#proyectos" class="bg-negro text-white px-5 py-2 rounded-xl hover:bg-gray-800 transition">Ver mis proyectos</a>
+  </section>
+
+  <!-- SECCIÓN SOBRE MÍ -->
+  <section id="sobre-mi" class="py-24 px-6 bg-white">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-2xl font-semibold mb-4">Sobre mí</h2>
+      <p class="text-gray-700 leading-relaxed">
+        Soy estudiante del ciclo formativo de grado superior en Desarrollo de Aplicaciones Web, en formación como desarrolladora web full stack.
+        Como persona proactiva y comprometida, me esfuerzo cada día por crecer profesionalmente y adaptarme a los nuevos entornos. Vengo de Cuba, y en poco tiempo en España, he demostrado mi capacidad de adaptación iniciando una formación intensiva en tecnología.Busco mi primera oportunidad en el sector IT, donde pueda aportar valor, seguir aprendiendo y formar parte de un equipo que comparta la pasión por el desarrollo y la innovación.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECCIÓN PROYECTOS -->
+  <section id="proyectos" class="py-24 px-6 bg-beige">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-2xl font-semibold mb-8 text-center">Proyectos</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for p in proyectos %}
+        <a href="{{ p.enlace }}" target="_blank" class="block bg-white rounded-2xl shadow-md hover:shadow-lg transition p-4">
+          <img src="{% static 'img/'|add:p.imagen %}" alt="{{ p.titulo }}" class="rounded-xl mb-3">
+          <h3 class="font-semibold text-lg">{{ p.titulo }}</h3>
+          <p class="text-gray-600 text-sm">{{ p.descripcion }}</p>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN HABILIDADES -->
+<section id="habilidades" class="py-24 px-6 bg-white">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-2xl font-semibold mb-8">Habilidades</h2>
+    <div class="flex flex-wrap justify-center gap-10">
+      {% for h in habilidades %}
+        <div class="flex flex-col items-center w-28">
+          <img src="{{ h.icono }}" alt="{{ h.titulo }}" class="w-12 h-12 mb-3 transition-transform hover-glow
+          ">
+          <p class="text-sm font-semibold">{{ h.titulo }}</p>
+          <p class="text-xs text-gray-500">{{ h.nivel }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+  <!-- SECCIÓN CONTACTO -->
+  <section id="contacto" class="py-24 px-6 bg-beige text-center">
+    <h2 class="text-2xl font-semibold mb-4">Contacto</h2>
+    <p class="text-gray-700 mb-2">Málaga, España</p>
+    <p class="text-gray-700 mb-4">📧 francicarrillo61@gmail.com</p>
+    <a href="mailto:francicarrillo61@gmail.com" class="bg-negro text-white px-5 py-2 rounded-xl hover:bg-gray-800 transition">Enviar correo</a>
+    <br>
+    <br>
+    <div class="flex justify-center gap-6 mb-6">
+    <a href="https://www.linkedin.com/in/franci-carrillo-b72746382" target="_blank" class="text-gray-800 hover:text-blue-600 text-3xl transition">
+      <i class="fab fa-linkedin"></i>
+    </a>
+    <a href="https://github.com/Jfranciglez" target="_blank" class="text-gray-800 hover:text-black text-3xl transition">
+      <i class="fab fa-github"></i>
+    </a>
+  </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-8 text-center text-gray-600 text-sm bg-white">
+    © 2025 Jennifer González Carrillo 
+  </footer>
+
+</body>
+</html>
