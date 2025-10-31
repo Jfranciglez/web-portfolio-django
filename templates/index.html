@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mi Portafolio</title>
-  <link rel="stylesheet" href="{% static '/static/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@2.16.0/devicon.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
@@ -27,26 +27,6 @@
       },
     }
   </script>
-  <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const faders = document.querySelectorAll(".fade-in");
-
-  const appearOptions = {
-    threshold: 0.2,
-    rootMargin: "0px 0px -50px 0px"
-  };
-
-  const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add("show");
-      observer.unobserve(entry.target);
-    });
-  }, appearOptions);
-
-  faders.forEach(fader => appearOnScroll.observe(fader));
-});
-</script>
 
 
 </head>
@@ -56,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
   <!-- HEADER -->
   <header class="fixed top-0 left-0 w-full bg-beige/90 backdrop-blur-sm shadow-sm z-50">
     <nav class="max-w-5xl mx-auto flex justify-between items-center py-4 px-6">
-      <h1 class="font-bold text-xl">Mi Portafolio</h1>
+      <h1 class="font-bold text-xl">Portafolio Profesional</h1>
       <ul class="flex gap-6">
         <li><a href="#inicio" class="hover:text-gray-600">Inicio</a></li>
         <li><a href="#sobre-mi" class="hover:text-gray-600">Sobre mí</a></li>
@@ -67,13 +47,29 @@ document.addEventListener("DOMContentLoaded", () => {
     </nav>
   </header>
 
-  <!-- SECCIÓN INICIO -->
-  <section id="inicio" class="h-screen flex flex-col justify-center items-center text-center px-6">
-    <img src="{% static 'img/foto.jpg' %}" alt="Foto de Jennifer" class="w-60 h-60 rounded-full shadow-md mb-6 object-cover">
+ <!-- SECCIÓN INICIO -->
+<section id="inicio" class="min-h-screen flex flex-col justify-center items-center text-center px-6 md:flex-row md:text-left md:gap-12 md:px-20">
+  
+  <!-- FOTO -->
+  <div class="flex justify-center md:justify-end md:w-1/2 mb-8 md:mb-0">
+    <img src="{% static 'img/foto.jpg' %}" alt="Foto de Jennifer" 
+         class="w-48 h-48 md:w-64 md:h-64 rounded-full shadow-md object-cover border-4 border-white">
+  </div>
+
+  <!-- TEXTO -->
+  <div class="md:w-1/2 flex flex-col justify-center items-center md:items-start">
     <h2 class="text-3xl font-semibold mb-2">¡Hola! Soy Jennifer</h2>
-    <p class="text-gray-700 mb-6">Desarrolladora web en formación.</p>
-    <a href="#proyectos" class="bg-negro text-white px-5 py-2 rounded-xl hover:bg-gray-800 transition">Ver mis proyectos</a>
-  </section>
+    <p class="text-gray-700 mb-6 max-w-md">
+      Desarrolladora web en formación.
+    </p>
+    <a href="#proyectos" 
+       class="bg-negro text-white px-5 py-2 rounded-xl hover:bg-gray-800 transition-transform hover:scale-105">
+      Ver mis proyectos
+    </a>
+  </div>
+
+</section>
+
 
   <!-- SECCIÓN SOBRE MÍ -->
   <section id="sobre-mi" class="py-24 px-6 bg-white">
@@ -123,16 +119,23 @@ document.addEventListener("DOMContentLoaded", () => {
   <!-- SECCIÓN CONTACTO -->
   <section id="contacto" class="py-24 px-6 bg-beige text-center">
     <h2 class="text-2xl font-semibold mb-4">Contacto</h2>
-    <p class="text-gray-700 mb-2">Málaga, España</p>
-    <p class="text-gray-700 mb-4">📧 francicarrillo61@gmail.com</p>
-    <a href="mailto:francicarrillo61@gmail.com" class="bg-negro text-white px-5 py-2 rounded-xl hover:bg-gray-800 transition">Enviar correo</a>
+    <p class="text-gray-700 mb-2">{{contacto.ubicacion}}</p>
+    <br>
+    <p class="text-black-700 max-w-2xl mx-auto mb-6">
+    {{ contacto.descripcion }}
+    </p>
+    <p class="text-gray-700 mb-4">{{contacto.email}}</p>
+     <a href="mailto:{{ contacto.email }}" 
+     class="inline-flex items-center gap-2 bg-negro text-white px-5 py-2 rounded-xl hover:bg-gray-800 transition">
+     <i class="fa-solid fa-paper-plane"></i> Enviar correo
+    </a>
     <br>
     <br>
     <div class="flex justify-center gap-6 mb-6">
-    <a href="https://www.linkedin.com/in/franci-carrillo-b72746382" target="_blank" class="text-gray-800 hover:text-blue-600 text-3xl transition">
+    <a href="{{contacto.linkedin}}" target="_blank" class="text-gray-800 hover:text-blue-600 text-3xl transition">
       <i class="fab fa-linkedin"></i>
     </a>
-    <a href="https://github.com/Jfranciglez" target="_blank" class="text-gray-800 hover:text-black text-3xl transition">
+    <a href="{{contacto.github}}" target="_blank" class="text-gray-800 hover:text-darkgray text-3xl transition">
       <i class="fab fa-github"></i>
     </a>
   </div>

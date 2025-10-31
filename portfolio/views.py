@@ -38,8 +38,14 @@ def index(request):
                 {"titulo": "MySQL", "icono": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg", "nivel": "Intermedio"},
                 {"titulo": "MongoDB", "icono": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", "nivel": "Intermedio"},
                 {"titulo": "Java", "icono": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg", "nivel": "Intermedio"},
-            ]
-
+            ],
+       "contacto": {
+            "ubicacion": "Málaga, España",
+            "email": "francicarrillo61@gmail.com",
+            "linkedin": "https://www.linkedin.com/in/franci-carrillo-b72746382",
+            "github": "https://github.com/Jfranciglez",
+            "descripcion": "¡Hablemos!.",
+       }
 
         
     }
