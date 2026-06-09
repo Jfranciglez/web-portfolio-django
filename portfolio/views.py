@@ -5,22 +5,25 @@ def index(request):
     context = {
         "proyectos": [
             {
-                "titulo": "Gestión de Almacén",
-                "descripcion": "Aplicación CRUD para controlar stock de productos lácteos.",
-                "imagen": "almacen.png",
-                "enlace": "https://jfranciglez.alwaysdata.net/"
+                "titulo": "Dental Clinic",
+                "descripcion": "Gestión de una clinica dentalAplicación CRUD para controlar stock de productos lácteos.",
+                "enlace": "https://jfranciglez.github.io/trabajo-enfoque-devclient/"
             },
             {
-                "titulo": "Carta Online y Juego Apuesta y Gana",
+                "titulo": "Sneaker",
                 "descripcion": "Carta digital para restaurantes con pedidos a domicilio como ejercicio1 y el juego Apuesta y gana como ejercicio2.",
                 "imagen": "hamb.png", 
                 "enlace": "https://ejercicios-php-02-d7b70.wasmer.app/"
             },
             {
-                "titulo": "Panaderia Dulce Enigma",
+                "titulo": "Visitas Virtuales",
                 "descripcion": "Presencia digital de una tienda donde muestra sus prooductos y ofertas.",
-                "imagen": "panad.png",
-                "enlace": ""
+                "enlace": "https://visitasvirtuales.dedyn.io/"
+            },
+            {
+                "titulo": "100 Caños",
+                "descripcion": "Presencia digital de una tienda donde muestra sus prooductos y ofertas.",
+                "enlace": "https://100canos.com/"
             },
         ],
         "habilidades": [
@@ -34,10 +37,14 @@ def index(request):
                 {"titulo": "Angular", "icono": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg", "nivel": "Intermedio"},
                 {"titulo": "FastAPI", "icono": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg", "nivel": "Intermedio"},
                 {"titulo": "Docker", "icono": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg", "nivel": "Intermedio"},
-                {"titulo": "AWS", "icono": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg", "nivel": "Básico"},
+                {"titulo": "AWS", "icono": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg", "nivel": "Intermedio"},
                 {"titulo": "MySQL", "icono": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg", "nivel": "Intermedio"},
                 {"titulo": "MongoDB", "icono": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", "nivel": "Intermedio"},
                 {"titulo": "Java", "icono": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg", "nivel": "Intermedio"},
+                {"titulo": "React", "icono": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", "nivel": "Intermedio"},
+                {"titulo": "Node.js", "icono": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg", "nivel": "Intermedio"}, 
+                {"titulo": "Express.js", "icono": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg", "nivel": "Intermedio"},
+                {"titulo": "PostgreSQL", "icono": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", "nivel": "Intermedio"},
             ],
        "contacto": {
             "ubicacion": "Málaga, España",
