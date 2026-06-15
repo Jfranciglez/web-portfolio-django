@@ -6,23 +6,30 @@ def index(request):
         "proyectos": [
             {
                 "titulo": "Dental Clinic",
-                "descripcion": "Gestión de una clinica dentalAplicación CRUD para controlar stock de productos lácteos.",
+                "subtitulo":"Proyecto académico",
+                "descripcion": "Gestión de citas de una clinica dental.",
+                "imagen": "dentalclinic.png",
                 "enlace": "https://jfranciglez.github.io/trabajo-enfoque-devclient/"
             },
             {
-                "titulo": "Sneaker",
-                "descripcion": "Carta digital para restaurantes con pedidos a domicilio como ejercicio1 y el juego Apuesta y gana como ejercicio2.",
-                "imagen": "hamb.png", 
+                "titulo": "ShoesRelife",
+                "subtitulo":"Proyecto académico",
+                "descripcion":"Tienda online de zapatillas.",
+                "imagen": "shoesrelife.png", 
                 "enlace": "https://ejercicios-php-02-d7b70.wasmer.app/"
             },
             {
                 "titulo": "Visitas Virtuales",
-                "descripcion": "Presencia digital de una tienda donde muestra sus prooductos y ofertas.",
+                "subtitulo":"Proyecto prácticas",
+                "descripcion": "Visistas virtuales de los institutos de Davante.",
+                "imagen": "visitas.png", 
                 "enlace": "https://visitasvirtuales.dedyn.io/"
             },
             {
                 "titulo": "100 Caños",
-                "descripcion": "Presencia digital de una tienda donde muestra sus prooductos y ofertas.",
+                "subtitulo":"Proyecto prácticas",
+                "descripcion": "Web de reservas de experiencias de oleoturismo en Málaga.",
+                "imagen": "100caños.png", 
                 "enlace": "https://100canos.com/"
             },
         ],

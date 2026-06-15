@@ -36,9 +36,12 @@
 
   <!-- HEADER -->
   <header class="fixed top-0 left-0 w-full bg-beige/90 backdrop-blur-sm shadow-sm z-50">
-    <nav class="max-w-5xl mx-auto flex justify-between items-center py-4 px-6">
-      <h1><a href="#inicio"class="font-bold text-xl">Jennifer González</a></h1>
-      <ul class="flex gap-6">
+    <nav class="max-w-5xl mx-auto flex items-center justify-between py-4 px-6 relative">
+      <h1><a href="#inicio" class="font-bold text-xl">Jennifer González</a></h1>
+      <button id="menu-toggle" type="button" class="text-2xl md:hidden" aria-expanded="false" aria-label="Abrir menú">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <ul id="nav-links" class="hidden md:flex gap-6 items-center">
         <li><a href="#sobre-mi" class="nav-link">Sobre mí</a></li>
         <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
         <li><a href="#habilidades" class="nav-link">Habilidades</a></li>
@@ -48,8 +51,8 @@
   </header>
 
  <!-- SECCIÓN INICIO -->
-<section id="inicio" class="min-h-screen flex items-center justify-center px-6 md:px-20 py-24 relative overflow-hidden" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('{% static 'img/CV image.jpeg' %}'); background-size: cover; background-position: center;">
-  <div class="relative w-full max-w-2xl text-white md:text-left-bottom">
+<section id="inicio" class="min-h-screen px-6 md:px-20 py-24 relative overflow-hidden" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('{% static 'img/CV img.jpeg' %}'); background-size: cover; background-position: center;">
+  <div class="hero-content text-white">
     <h2 class="text-3xl md:text-4xl font-semibold mb-3">¡Hola! Soy Jennifer</h2>
     <p class="text-base md:text-lg max-w-2xl mb-6">
       Desarrolladora web Full Stack.
@@ -67,8 +70,8 @@
     <div class="max-w-4xl mx-auto text-center">
       <h2 class="text-2xl font-semibold mb-8 text-center">Sobre mí</h2>
       <p class="text-gray-700 leading-relaxed">
-        Graduada del ciclo formativo de grado superior en Desarrollo de Aplicaciones Web, con formación en Comercio, Marketing y Comunicación.
-        Como persona proactiva y comprometida, me esfuerzo cada día por crecer profesionalmente y adaptarme a los nuevos entornos. Vengo de Cuba, y en poco tiempo en España, he demostrado mi capacidad de adaptación iniciando una formación intensiva en tecnología. Busco mi primera oportunidad en el sector IT, donde pueda aportar valor, seguir aprendiendo y formar parte de un equipo que comparta la pasión por el desarrollo y la innovación.
+        Graduada del ciclo formativo de grado superior en Desarrollo de Aplicaciones Web, con formación en Comercio y Marketing.
+        Como persona proactiva y comprometida, me esfuerzo cada día por crecer profesionalmente y adaptarme a los nuevos entornos. En poco tiempo en España, he demostrado mi capacidad de adaptación iniciando una formación intensiva en tecnología. Busco mi primera oportunidad en el sector IT, donde pueda aportar valor, seguir aprendiendo y formar parte de un equipo que comparta la pasión por el desarrollo y la innovación.
       </p>
     </div>
   </section>
@@ -82,6 +85,7 @@
         <a href="{{ p.enlace }}" target="_blank" class="project-card block bg-white rounded-2xl shadow-md hover:shadow-lg transition p-4">
           <img src="{% static 'img/'|add:p.imagen %}" alt="{{ p.titulo }}" class="rounded-xl mb-3 w-full h-48 object-cover">
           <h3 class="font-semibold text-lg">{{ p.titulo }}</h3>
+          <h4 class="text-darkgray-700">{{ p.subtitulo }}</h4>
           <p class="text-gray-600 text-sm">{{ p.descripcion }}</p>
         </a>
         {% endfor %}
@@ -133,61 +137,9 @@
 
   <!-- FOOTER -->
   <footer class="py-8 text-center text-gray-600 text-sm bg-white">
-    © 2025 Jennifer González Carrillo 
+    © 2026 Jennifer Franci González Carrillo. 
   </footer>
 
-  <script>
-    const sections = Array.from(document.querySelectorAll('section[id]'));
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    // Resalta la sección que está más cerca de la parte superior (considerando header fijo)
-    function updateActiveNav() {
-      const offset = 120; // ajustar según altura del header
-      let currentId = sections[0] ? sections[0].id : '';
-      for (const sec of sections) {
-        const rect = sec.getBoundingClientRect();
-        if (rect.top <= offset) {
-          currentId = sec.id;
-        }
-      }
-      navLinks.forEach(link => {
-        if (link.getAttribute('href') === `#${currentId}`) link.classList.add('active');
-        else link.classList.remove('active');
-      });
-    }
-
-    let ticking = false;
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          updateActiveNav();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }, { passive: true });
-
-    window.addEventListener('resize', updateActiveNav);
-    document.addEventListener('DOMContentLoaded', updateActiveNav);
-    updateActiveNav();
-
-    const skillCards = document.querySelectorAll('.skill-card');
-    const skillsContainer = document.getElementById('skills-container');
-
-    // Observa el contenedor de habilidades y lanza la animación en secuencia
-    const fastStagger = 80; // ms entre cada icono
-    const containerObserver = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          skillCards.forEach((card, i) => {
-            setTimeout(() => card.classList.add('visible'), i * fastStagger);
-          });
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { root: null, rootMargin: '0px 0px -30% 0px', threshold: 0 });
-
-    if (skillsContainer) containerObserver.observe(skillsContainer);
-  </script>
+  <script src="{% static 'js/general.js' %}"></script>
 </body>
 </html>
